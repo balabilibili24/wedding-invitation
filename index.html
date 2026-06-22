@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>朱明盛 &amp; 张芷萱 | 婚礼邀请函</title>
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="shortcut icon" href="favicon.ico">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=2">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png?v=2">
+<link rel="shortcut icon" href="favicon.ico?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=2">
 <style>
   /* Google Fonts blocked in China, using system fonts */
   /* 离线或无网络时自动使用系统衬线字体，排版不受影响 */
@@ -312,7 +312,7 @@
 <body>
 
 <!-- 背景音乐 -->
-<audio id="bgm" loop preload="auto">
+<audio id="bgm" loop preload="none">
   <source src="pic/Beaté-Jordan Critz.mp3" type="audio/mpeg">
 </audio>
 <button class="music-toggle playing" id="musicBtn" title="暂停音乐">♫</button>
@@ -966,36 +966,46 @@
   // 背景音乐（默认开启，点击按钮关闭）
   var bgm = document.getElementById('bgm');
   var musicBtn = document.getElementById('musicBtn');
-  var musicPlaying = true;
 
-  function playMusic() {
-    bgm.play().then(function() {
+  function updateBtn(playing) {
+    if (playing) {
       musicBtn.classList.add('playing');
       musicBtn.textContent = '♫';
       musicBtn.title = '暂停音乐';
-      musicPlaying = true;
+    } else {
+      musicBtn.classList.remove('playing');
+      musicBtn.textContent = '♪';
+      musicBtn.title = '播放音乐';
+    }
+  }
+
+  // 首次用户交互即自动播放（浏览器要求用户手势）
+  var autoPlayDone = false;
+  function tryAutoPlay() {
+    if (autoPlayDone) return;
+    autoPlayDone = true;
+    bgm.play().then(function() {
+      updateBtn(true);
     }).catch(function() {});
   }
-  function pauseMusic() {
-    bgm.pause();
-    musicBtn.classList.remove('playing');
-    musicBtn.textContent = '♪';
-    musicBtn.title = '播放音乐';
-    musicPlaying = false;
-  }
 
+  // 任何位置的首次点击/触摸都触发播放
+  document.addEventListener('click', tryAutoPlay);
+  document.addEventListener('touchstart', tryAutoPlay, {passive: true});
+
+  // 按钮：首次点击即播放；之后切换暂停/播放
   musicBtn.addEventListener('click', function(e) {
     e.stopPropagation();
-    if (musicPlaying) { pauseMusic(); } else { playMusic(); }
-  });
-
-  // 首次用户交互后自动播放（浏览器要求用户手势）
-  var autoPlayTried = false;
-  document.addEventListener('click', function tryAutoPlay() {
-    if (autoPlayTried) return;
-    autoPlayTried = true;
-    if (!musicPlaying) return;
-    playMusic();
+    if (!autoPlayDone) {
+      tryAutoPlay();
+      return;
+    }
+    if (bgm.paused) {
+      bgm.play().then(function() { updateBtn(true); }).catch(function() {});
+    } else {
+      bgm.pause();
+      updateBtn(false);
+    }
   });
 
   // 图片加载失败时自动替换为占位符（适配离线/无图片环境，跳过地图内部图片）
