@@ -315,7 +315,7 @@
 <audio id="bgm" loop preload="auto" autoplay>
   <source src="pic/Beaté-Jordan Critz.mp3" type="audio/mpeg">
 </audio>
-<button class="music-toggle playing" id="musicBtn" title="暂停音乐">♫</button>
+<button class="music-toggle" id="musicBtn" title="播放音乐">♪</button>
 
 
 
@@ -967,62 +967,65 @@
   var bgm = document.getElementById('bgm');
   var musicBtn = document.getElementById('musicBtn');
 
-  function updateBtn(playing) {
-    if (playing) {
-      musicBtn.classList.add('playing');
-      musicBtn.textContent = '♫';
-      musicBtn.title = '暂停音乐';
-    } else {
-      musicBtn.classList.remove('playing');
-      musicBtn.textContent = '♪';
-      musicBtn.title = '播放音乐';
+  function setPlaying() {
+    musicBtn.classList.add('playing');
+    musicBtn.textContent = '♫';
+    musicBtn.title = '暂停音乐';
+  }
+  function setPaused() {
+    musicBtn.classList.remove('playing');
+    musicBtn.textContent = '♪';
+    musicBtn.title = '播放音乐';
+  }
+
+  var started = false;
+
+  function tryPlay() {
+    var p = bgm.play();
+    if (p !== undefined) {
+      p.then(function() {
+        setPlaying();
+        started = true;
+      }).catch(function(e) {
+        // 浏览器拦截或音频未就绪，保持 ♪ 状态
+        setPaused();
+      });
     }
   }
 
-  function startMusic() {
-    bgm.play().then(function() {
-      updateBtn(true);
-      autoPlayDone = true;
-    }).catch(function() {
-      // 浏览器阻止了自动播放，等待用户交互
-      updateBtn(false);
-    });
-  }
+  // —— 自动播放：页面加载后立即尝试 ——
+  tryPlay();
 
-  var autoPlayDone = false;
-
-  // 策略1：页面加载后立即尝试（部分浏览器允许）
-  startMusic();
-
-  // 策略2：微信内置浏览器 —— WeixinJSBridge 就绪后自动播放
+  // —— 微信内置浏览器专属：JS Bridge 就绪后播放 ——
   document.addEventListener('WeixinJSBridgeReady', function() {
-    startMusic();
+    tryPlay();
   }, false);
 
-  // 策略3：用户首次交互（点击/触摸/滚动）
-  function onFirstInteraction() {
-    if (!autoPlayDone) startMusic();
+  // —— 用户交互兜底：点击/触摸任意位置即播放 ——
+  function onInteraction() {
+    if (!started) tryPlay();
+    if (started) {
+      document.removeEventListener('click', onInteraction);
+      document.removeEventListener('touchstart', onInteraction);
+    }
   }
-  document.addEventListener('click', onFirstInteraction);
-  document.addEventListener('touchstart', onFirstInteraction, {passive: true});
-  // 用户滚动也算交互，尝试播放
-  var scrollTried = false;
-  document.addEventListener('scroll', function() {
-    if (!scrollTried && !autoPlayDone) { scrollTried = true; startMusic(); }
-  }, {passive: true});
+  document.addEventListener('click', onInteraction);
+  document.addEventListener('touchstart', onInteraction, {passive: true});
 
-  // 按钮：切换暂停/播放
+  // —— 音乐按钮：切换播放/暂停 ——
   musicBtn.addEventListener('click', function(e) {
     e.stopPropagation();
-    if (!autoPlayDone) {
-      startMusic();
+    // 确保 onInteraction 也收到事件（如果还没播过）
+    if (!started) {
+      tryPlay();
       return;
     }
+    // 已播过：切换
     if (bgm.paused) {
-      bgm.play().then(function() { updateBtn(true); }).catch(function() {});
+      tryPlay();
     } else {
       bgm.pause();
-      updateBtn(false);
+      setPaused();
     }
   });
 
