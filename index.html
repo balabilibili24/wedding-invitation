@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>朱明盛 &amp; 张芷萱 | 婚礼邀请函</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap');
+  /* Google Fonts blocked in China, using system fonts */
   /* 离线或无网络时自动使用系统衬线字体，排版不受影响 */
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -311,7 +311,7 @@
 <audio id="bgm" loop preload="auto">
   <source src="pic/Beaté-Jordan Critz.mp3" type="audio/mpeg">
 </audio>
-<button class="music-toggle" id="musicBtn" title="播放音乐">♪</button>
+<button class="music-toggle playing" id="musicBtn" title="暂停音乐">♫</button>
 
 
 
@@ -938,7 +938,7 @@
     var mapEl = document.getElementById('weddingMap');
     if (!mapEl || typeof AMap === 'undefined') return;
     // 天津市河西区马场道188号 天谊英伦古堡庄园
-    var lng = 117.2005, lat = 39.1090;
+    var lng = 117.190855, lat = 39.092805;
     var map = new AMap.Map(mapEl, {
       center: [lng, lat],
       zoom: 16,
@@ -959,37 +959,40 @@
     map.on('click', function() { map.setStatus({ scrollWheel: true }); });
   })();
 
-  // 背景音乐
+  // 背景音乐（默认开启，点击按钮关闭）
   var bgm = document.getElementById('bgm');
   var musicBtn = document.getElementById('musicBtn');
-  var musicPlaying = false;
-  musicBtn.addEventListener('click', function() {
-    if (musicPlaying) {
-      bgm.pause();
-      musicBtn.classList.remove('playing');
-      musicBtn.textContent = '♪';
-      musicBtn.title = '播放音乐';
-    } else {
-      bgm.play().then(function() {
-        musicBtn.classList.add('playing');
-        musicBtn.textContent = '♫';
-        musicBtn.title = '暂停音乐';
-      }).catch(function() {});
-    }
-    musicPlaying = !musicPlaying;
-  });
-  // 首次用户交互后自动播放
-  var autoPlayed = false;
-  document.addEventListener('click', function tryAutoPlay() {
-    if (autoPlayed) return;
+  var musicPlaying = true;
+
+  function playMusic() {
     bgm.play().then(function() {
-      autoPlayed = true;
-      musicPlaying = true;
       musicBtn.classList.add('playing');
       musicBtn.textContent = '♫';
       musicBtn.title = '暂停音乐';
+      musicPlaying = true;
     }).catch(function() {});
-  }, { once: false });
+  }
+  function pauseMusic() {
+    bgm.pause();
+    musicBtn.classList.remove('playing');
+    musicBtn.textContent = '♪';
+    musicBtn.title = '播放音乐';
+    musicPlaying = false;
+  }
+
+  musicBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    if (musicPlaying) { pauseMusic(); } else { playMusic(); }
+  });
+
+  // 首次用户交互后自动播放（浏览器要求用户手势）
+  var autoPlayTried = false;
+  document.addEventListener('click', function tryAutoPlay() {
+    if (autoPlayTried) return;
+    autoPlayTried = true;
+    if (!musicPlaying) return;
+    playMusic();
+  });
 
   // 图片加载失败时自动替换为占位符（适配离线/无图片环境，跳过地图内部图片）
   function isInsideMap(el) {
