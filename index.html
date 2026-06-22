@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>朱明盛 &amp; 张芷萱 | 婚礼邀请函</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap');
+  /* 离线或无网络时自动使用系统衬线字体，排版不受影响 */
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Serif SC', 'STSong', 'SimSun', serif;
+    background: #fdf8f4;
+    color: #3e3232;
+    line-height: 2;
+    overflow-x: hidden;
+  }
+
+  /* ========== HERO ========== */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(160deg, #fdf2ec 0%, #fef9f3 25%, #faf5eb 50%, #fdf5ef 75%, #fdf2ec 100%);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 18% 25%, rgba(212,175,55,0.10) 0%, transparent 45%),
+      radial-gradient(circle at 82% 65%, rgba(212,175,55,0.08) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(212,175,55,0.05) 0%, transparent 65%);
+  }
+  /* 金色粒子 */
+  .hero-particles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+  .hero-particles span {
+    position: absolute; bottom: -20px; width: 8px; height: 8px;
+    background: rgba(201,168,76,0.25); border-radius: 50%;
+    animation: floatPetal linear infinite;
+  }
+  .hero-particles span:nth-child(1) { left: 8%; width: 6px; height: 6px; animation-duration: 14s; animation-delay: 0s; }
+  .hero-particles span:nth-child(2) { left: 22%; width: 10px; height: 10px; animation-duration: 18s; animation-delay: 2s; }
+  .hero-particles span:nth-child(3) { left: 38%; width: 5px; height: 5px; animation-duration: 12s; animation-delay: 4s; }
+  .hero-particles span:nth-child(4) { left: 52%; width: 8px; height: 8px; animation-duration: 16s; animation-delay: 1s; }
+  .hero-particles span:nth-child(5) { left: 66%; width: 7px; height: 7px; animation-duration: 20s; animation-delay: 3s; }
+  .hero-particles span:nth-child(6) { left: 78%; width: 9px; height: 9px; animation-duration: 15s; animation-delay: 5s; }
+  .hero-particles span:nth-child(7) { left: 90%; width: 6px; height: 6px; animation-duration: 17s; animation-delay: 6s; }
+  /* 顶部装饰线 */
+  .hero::after {
+    content: '';
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 200px; height: 2px;
+    background: linear-gradient(90deg, transparent, #c9a84c, transparent);
+    opacity: 0.5;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    padding: 40px 24px;
+  }
+  /* 四角装饰 */
+  .hero-corners { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+  .hero-corner { position: absolute; width: 40px; height: 40px; opacity: 0.35; }
+  .hero-corner::before, .hero-corner::after { content: ''; position: absolute; background: #c9a84c; }
+  .hero-corner::before { width: 100%; height: 1px; }
+  .hero-corner::after { width: 1px; height: 100%; }
+  .hero-corner.tl { top: 40px; left: 40px; }
+  .hero-corner.tr { top: 40px; right: 40px; }
+  .hero-corner.tr::after { right: 0; }
+  .hero-corner.bl { bottom: 80px; left: 40px; }
+  .hero-corner.bl::before { bottom: 0; }
+  .hero-corner.br { bottom: 80px; right: 40px; }
+  .hero-corner.br::before { bottom: 0; }
+  .hero-corner.br::after { right: 0; }
+  .hero-ornament { font-size: 52px; color: #c9a84c; letter-spacing: 14px; margin-bottom: 24px; text-shadow: 0 2px 8px rgba(201,168,76,0.15); }
+  .hero-ornament .ring { display: inline-block; font-size: 22px; vertical-align: middle; margin: 0 6px; opacity: 0.65; }
+  .hero h1 { font-size: clamp(34px, 5vw, 58px); font-weight: 300; letter-spacing: 10px; margin-bottom: 20px; color: #5a3e2b; }
+  .hero .names { font-size: clamp(22px, 3.5vw, 30px); font-weight: 400; letter-spacing: 12px; color: #8b6914; margin: 28px 0; }
+  .hero .names .amp { color: #c9a84c; font-weight: 300; }
+  .hero .sub { font-size: 15px; letter-spacing: 5px; color: #8b7b7b; margin-top: 8px; }
+  .hero .date-badge { display: inline-flex; align-items: center; gap: 10px; margin-top: 36px; padding: 14px 44px; border: 1.5px solid #c9a84c; border-radius: 50px; font-size: 17px; letter-spacing: 8px; color: #8b6914; background: rgba(255,255,255,0.4); backdrop-filter: blur(4px); }
+  .hero .date-badge .ring-icon { font-size: 20px; }
+  .hero .scroll-hint { position: absolute; bottom: 44px; left: 50%; transform: translateX(-50%); font-size: 13px; letter-spacing: 5px; color: #c9a84c; animation: bounce 2s infinite; }
+
+  /* ========== 内容容器 ========== */
+  .story { max-width: 960px; margin: 0 auto; padding: 80px 32px 100px; }
+
+  /* ========== 人物介绍（带圆形头像） ========== */
+  .cast { text-align: center; padding: 40px 20px 48px; margin-bottom: 60px; background: linear-gradient(135deg, #fffef9, #fef9f3); border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.04); }
+  .cast-label { font-family: 'Noto Sans SC', sans-serif; font-size: 11px; letter-spacing: 8px; color: #c9a84c; margin-bottom: 12px; }
+  .cast-title { font-size: 20px; font-weight: 400; letter-spacing: 8px; color: #5a3e2b; margin-bottom: 36px; }
+  .cast-row { display: flex; gap: 32px; justify-content: center; }
+  .cast-card { flex: 1; max-width: 420px; display: flex; align-items: center; gap: 18px; background: #fff; border-radius: 10px; padding: 20px 22px; box-shadow: 0 2px 16px rgba(0,0,0,0.04); text-align: left; }
+  .cast-avatar { flex: 0 0 160px; width: 160px; height: 160px; border-radius: 50%; overflow: hidden; background: #f5ede4; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+  .cast-info .role { font-size: 18px; font-weight: 500; letter-spacing: 4px; color: #5a3e2b; margin-bottom: 4px; }
+  .cast-info .name { font-size: 22px; letter-spacing: 4px; color: #8b6914; margin-bottom: 10px; }
+  .cast-info .info { font-size: 14px; color: #8b7b7b; line-height: 2; letter-spacing: 1px; }
+  .cast-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .cast-avatar .ph-avatar { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 36px; background: linear-gradient(135deg, #fdf8f4, #f5ede4); border: 2px dashed #e0d0b8; border-radius: 50%; }
+  .cast-info { flex: 1; min-width: 0; }
+  .cast-photo { margin-bottom: 36px; }
+  .cast-photo img { display: block; max-width: 300px; width: 70%; margin: 0 auto; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+  .cast-footer { margin-top: 24px; font-size: 13px; letter-spacing: 4px; color: #c9a84c; }
+
+  /* ========== 章节 ========== */
+  .chapter { display: flex; flex-direction: row-reverse; align-items: center; gap: 48px; margin-bottom: 90px; opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .chapter.visible { opacity: 1; transform: translateY(0); }
+  .ch-text { flex: 1; min-width: 0; }
+  .ch-num { font-family: 'Noto Sans SC', sans-serif; font-size: 64px; font-weight: 700; color: rgba(201,168,76,0.18); line-height: 1; margin-bottom: -8px; }
+  .ch-date { font-family: 'Noto Sans SC', sans-serif; font-size: 13px; letter-spacing: 5px; color: #c9a84c; margin-bottom: 10px; }
+  .ch-title { font-size: 22px; font-weight: 500; letter-spacing: 3px; margin-bottom: 18px; color: #5a3e2b; }
+  .ch-text p { font-size: 15px; line-height: 2.2; color: #6b5e5e; text-align: justify; margin-bottom: 10px; }
+  .ch-text p:last-child { margin-bottom: 0; }
+
+  /* ========== 单图（无轮播的章节用） ========== */
+  .ch-img { flex: 0 0 320px; height: 420px; border-radius: 8px; background: #f5ede4; box-shadow: 0 8px 32px rgba(0,0,0,0.07); overflow: hidden; position: relative; }
+  .ch-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ch-img .placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #c9a84c; font-size: 14px; letter-spacing: 3px; text-align: center; padding: 24px; background: linear-gradient(135deg, #fdf8f4, #f5ede4); border: 2px dashed #e0d0b8; }
+  .ch-img .placeholder .icon { font-size: 44px; margin-bottom: 14px; }
+
+  /* ========== 图片轮播 ========== */
+  .carousel-wrap { flex: 0 0 340px; min-width: 0; }
+  .carousel { position: relative; overflow: hidden; border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.07); }
+  .carousel-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .carousel-track::-webkit-scrollbar { display: none; }
+  .carousel-slide { flex: 0 0 100%; scroll-snap-align: start; }
+  .carousel-slide .slide-img { width: 100%; aspect-ratio: 3 / 4; background: #f5ede4; overflow: hidden; }
+  .carousel-slide .slide-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .carousel-slide .slide-img .placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #c9a84c; font-size: 13px; letter-spacing: 3px; text-align: center; padding: 20px; background: linear-gradient(135deg, #fdf8f4, #f5ede4); border: 2px dashed #e0d0b8; }
+  .carousel-slide .slide-img .placeholder .icon { font-size: 38px; margin-bottom: 10px; }
+  .carousel-caption { text-align: center; font-size: 12px; color: #8b7b7b; letter-spacing: 2px; padding: 10px 8px 0; line-height: 1.6; }
+  .carousel-dots { display: flex; justify-content: center; gap: 6px; padding: 12px 0; }
+  .carousel-dots .dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(201,168,76,0.3); }
+  .carousel-dots .dot.active { background: #c9a84c; }
+  .carousel-arrows { display: flex; justify-content: center; gap: 20px; padding-top: 6px; }
+  .carousel-arrow { width: 32px; height: 32px; border-radius: 50%; border: 1px solid #c9a84c; background: #fff; color: #c9a84c; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+  .carousel-arrow:hover { background: #c9a84c; color: #fff; }
+
+  /* ========== 图片加载失败时的占位 ========== */
+  .img-fallback { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #c9a84c; font-size: 13px; letter-spacing: 2px; text-align: center; padding: 16px; background: linear-gradient(135deg, #fdf8f4, #f5ede4); border: 2px dashed #e0d0b8; border-radius: 4px; }
+  .img-fallback .fallback-icon { font-size: 36px; margin-bottom: 8px; display: block; }
+  .cast-avatar .img-fallback, .cat-avatar .img-fallback { border-radius: 50%; font-size: 11px; padding: 8px; }
+  .cast-avatar .img-fallback .fallback-icon, .cat-avatar .img-fallback .fallback-icon { font-size: 22px; margin-bottom: 2px; }
+
+  /* ========== 无图章节 ========== */
+  .chapter.no-img { }
+  .chapter.no-img .ch-text { max-width: 680px; margin: 0 auto; }
+
+  /* ========== 小猫介绍卡（仿人物卡） ========== */
+  .cat-cards { display: flex; gap: 24px; justify-content: center; flex: 0 0 auto; width: 100%; }
+  .cat-card { flex: 1; max-width: 340px; display: flex; align-items: center; gap: 16px; background: #fff; border-radius: 10px; padding: 18px 20px; box-shadow: 0 2px 16px rgba(0,0,0,0.04); text-align: left; }
+  .cat-avatar { flex: 0 0 150px; width: 150px; height: 150px; border-radius: 50%; overflow: hidden; background: #f5ede4; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+  .cat-info .cat-role { font-size: 17px; font-weight: 500; letter-spacing: 3px; color: #5a3e2b; margin-bottom: 4px; }
+  .cat-info .cat-name { font-size: 20px; letter-spacing: 3px; color: #8b6914; margin-bottom: 8px; }
+  .cat-info .cat-desc { font-size: 14px; color: #8b7b7b; line-height: 1.9; letter-spacing: 1px; }
+  .cat-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .cat-avatar .ph-avatar { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 32px; background: linear-gradient(135deg, #fdf8f4, #f5ede4); border: 2px dashed #e0d0b8; border-radius: 50%; }
+  .cat-info { flex: 1; min-width: 0; }
+
+  /* 伍章节特殊：小猫卡在上，文字在下 */
+  .chapter.cat-chapter { flex-direction: column; }
+  .chapter.cat-chapter .cat-cards { margin-bottom: 24px; }
+
+  /* ========== 间奏 ========== */
+  .interlude { text-align: center; padding: 40px 24px; margin: 0 0 70px; }
+  .interlude-line { display: inline-block; width: 50px; height: 1px; background: #c9a84c; vertical-align: middle; opacity: 0.5; margin: 0 14px; }
+  .interlude-dot { display: inline-block; font-size: 10px; color: #c9a84c; vertical-align: middle; opacity: 0.6; }
+  .interlude p { display: block; margin-top: 14px; font-size: 15px; letter-spacing: 4px; color: #8b6914; font-weight: 300; font-style: italic; line-height: 1.8; }
+
+  /* ========== 分隔线 ========== */
+  .divider { text-align: center; padding: 12px 0 40px; font-size: 10px; letter-spacing: 8px; color: #c9a84c; opacity: 0.5; }
+
+  /* ========== 文本间图片（吃饭章节用） ========== */
+  .inline-photos { display: flex; gap: 10px; margin: 20px 0; }
+  .inline-photo { flex: 1; border-radius: 6px; overflow: hidden; background: #f5ede4; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+  .inline-photo img { width: 100%; display: block; object-fit: cover; }
+  .inline-photo .placeholder { width: 100%; aspect-ratio: 1 / 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #c9a84c; font-size: 12px; letter-spacing: 2px; text-align: center; padding: 10px; background: linear-gradient(135deg, #fdf8f4, #f5ede4); border: 2px dashed #e0d0b8; }
+  .inline-photo .placeholder .icon { font-size: 28px; margin-bottom: 6px; }
+  .inline-photo-caption { text-align: center; font-size: 11px; color: #8b7b7b; letter-spacing: 1px; padding: 6px 4px 0; line-height: 1.5; }
+
+  /* ========== 终章 ========== */
+  .chapter.finale { flex-direction: column; text-align: center; border-left: 3px solid #c9a84c; padding-left: 32px; }
+  .chapter.finale .ch-text { text-align: center; }
+  .chapter.finale .ch-text p { text-align: center; }
+
+  /* ========== 金句 ========== */
+  .quote { text-align: center; padding: 60px 24px; margin: 50px 0; position: relative; }
+  .quote::before { content: '"'; font-size: 120px; color: rgba(201,168,76,0.10); position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-family: Georgia, serif; line-height: 1; }
+  .quote p { font-size: 17px; letter-spacing: 3px; color: #8b6914; font-weight: 300; position: relative; z-index: 1; line-height: 2.2; }
+
+  /* ========== 婚礼详情 ========== */
+  .wedding { background: linear-gradient(135deg, #fef9f3, #fdf2ec); border-radius: 12px; padding: 56px 44px; text-align: center; margin: 50px 0; box-shadow: 0 8px 40px rgba(0,0,0,0.06); position: relative; overflow: hidden; }
+  .wedding::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100px; height: 3px; background: linear-gradient(90deg, transparent, #c9a84c, transparent); }
+  .wedding h2 { font-size: 30px; font-weight: 300; letter-spacing: 10px; margin-bottom: 6px; color: #5a3e2b; }
+  .wedding .w-sub { font-family: 'Noto Sans SC', sans-serif; font-size: 13px; letter-spacing: 5px; color: #c9a84c; margin-bottom: 36px; }
+  .w-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; text-align: left; }
+  .w-item .w-label { font-family: 'Noto Sans SC', sans-serif; font-size: 11px; letter-spacing: 4px; color: #c9a84c; margin-bottom: 6px; }
+  .w-item .w-value { font-size: 16px; color: #3e3232; letter-spacing: 2px; line-height: 1.8; }
+  .w-item .w-value small { font-size: 12px; color: #8b7b7b; letter-spacing: 1px; display: block; }
+  .w-invite { margin-top: 36px; font-size: 15px; letter-spacing: 3px; color: #5a3e2b; line-height: 2.2; }
+
+  /* 婚礼配图 */
+  .wedding-photos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 36px; }
+  .wedding-photo { border-radius: 8px; overflow: hidden; background: #f5ede4; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+  .wedding-photo img { width: 100%; display: block; object-fit: cover; }
+  .wedding-photo .placeholder { width: 100%; aspect-ratio: 4 / 3; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #c9a84c; font-size: 13px; letter-spacing: 2px; text-align: center; padding: 16px; background: linear-gradient(135deg, #fdf8f4, #f5ede4); border: 2px dashed #e0d0b8; }
+  .wedding-photo .placeholder .icon { font-size: 34px; margin-bottom: 8px; }
+  .wedding-photo-caption { text-align: center; font-size: 12px; color: #8b7b7b; letter-spacing: 2px; padding: 10px 6px 0; line-height: 1.6; }
+
+  /* ========== 婚礼地图 ========== */
+  .map-container { border-radius: 8px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.05); background: #ece5d9; }
+  .map-container #weddingMap { width: 100%; height: 280px; background: #ece5d9; }
+  .map-container .amap-container { background: #ece5d9; }
+  .map-caption { text-align: center; font-size: 12px; color: #8b7b7b; letter-spacing: 2px; padding: 10px 6px 0; line-height: 1.6; }
+
+  /* ========== 尾部 ========== */
+  .footer { text-align: center; padding: 60px 24px; font-size: 14px; letter-spacing: 4px; color: #c9a84c; }
+  .footer .f-names { font-size: 19px; letter-spacing: 8px; margin-bottom: 8px; color: #5a3e2b; }
+  .footer .f-route { margin-top: 20px; font-size: 12px; color: #ccc; letter-spacing: 1px; line-height: 1.8; }
+
+  /* ========== 动画 ========== */
+  @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+  @keyframes musicPulse { 0%, 100% { box-shadow: 0 2px 12px rgba(201,168,76,0.3); } 50% { box-shadow: 0 2px 24px rgba(201,168,76,0.6); } }
+  @keyframes floatPetal { 0% { transform: translateY(0) rotate(0deg); opacity: 0; } 10% { opacity: 0.6; } 90% { opacity: 0.3; } 100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; } }
+
+  /* ========== 音乐按钮 ========== */
+  .music-toggle { position: fixed; bottom: 28px; right: 28px; z-index: 999; width: 46px; height: 46px; border-radius: 50%; background: rgba(255,255,255,0.92); border: 1px solid #c9a84c; color: #c9a84c; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 16px rgba(0,0,0,0.08); transition: all 0.3s; backdrop-filter: blur(8px); }
+  .music-toggle:hover { background: #c9a84c; color: #fff; }
+  .music-toggle.playing { background: #c9a84c; color: #fff; animation: musicPulse 2s infinite; }
+
+  /* ========== 响应式：平板 ========== */
+  @media (max-width: 860px) {
+    .chapter { flex-direction: column-reverse; gap: 28px; margin-bottom: 64px; }
+    .carousel-wrap { flex: 0 0 auto; width: 100%; }
+    .ch-img { flex: 0 0 auto; width: 100%; height: auto; aspect-ratio: 4 / 3; }
+    .carousel-slide .slide-img { aspect-ratio: 4 / 3; }
+    .cat-cards { flex-direction: column; align-items: center; }
+    .cat-card { max-width: 100%; width: 100%; }
+    .cast-row { flex-direction: column; align-items: center; }
+    .cast-card { max-width: 100%; width: 100%; }
+    .wedding-photos { grid-template-columns: 1fr 1fr; }
+    .w-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .story { padding: 48px 20px 80px; }
+    .hero { min-height: 85vh; }
+    .hero-ornament { font-size: 36px; letter-spacing: 8px; }
+    .hero-ornament .ring { font-size: 16px; margin: 0 3px; }
+    .hero h1 { font-size: 28px; letter-spacing: 5px; }
+    .hero .names { font-size: 18px; letter-spacing: 6px; }
+    .hero .date-badge { padding: 10px 28px; font-size: 14px; letter-spacing: 4px; }
+    .hero .date-badge .ring-icon { font-size: 14px; }
+    .hero .scroll-hint { bottom: 28px; font-size: 11px; }
+    .hero-corner { width: 28px; height: 28px; }
+    .hero-corner.tl { top: 20px; left: 16px; }
+    .hero-corner.tr { top: 20px; right: 16px; }
+    .hero-corner.bl { bottom: 50px; left: 16px; }
+    .hero-corner.br { bottom: 50px; right: 16px; }
+    .music-toggle { bottom: 16px; right: 16px; width: 38px; height: 38px; font-size: 16px; }
+    .ch-num { font-size: 44px; }
+    .ch-title { font-size: 19px; }
+    .ch-text p { font-size: 14px; text-align: left; }
+    .cast { padding: 28px 16px 32px; margin-bottom: 40px; }
+    .cast-title { font-size: 17px; letter-spacing: 5px; }
+    .cast-photo { margin-bottom: 24px; }
+    .cast-photo img { max-width: 100%; width: 85%; }
+    .cast-card { flex-direction: row; text-align: left; padding: 14px 12px; gap: 12px; }
+    .cast-avatar { flex: 0 0 100px; width: 100px; height: 100px; }
+    .cast-avatar .ph-avatar { font-size: 28px; }
+    .cast-info { text-align: left; }
+    .cast-info .role { font-size: 15px; letter-spacing: 2px; }
+    .cast-info .name { font-size: 17px; letter-spacing: 2px; }
+    .cast-info .info { font-size: 12px; line-height: 1.7; }
+    .cat-card { flex-direction: row; text-align: left; padding: 14px 12px; gap: 12px; }
+    .cat-avatar { flex: 0 0 100px; width: 100px; height: 100px; }
+    .cat-avatar .ph-avatar { font-size: 28px; }
+    .cat-info { text-align: left; }
+    .cat-info .cat-role { font-size: 15px; letter-spacing: 2px; }
+    .cat-info .cat-name { font-size: 17px; letter-spacing: 2px; }
+    .cat-info .cat-desc { font-size: 12px; line-height: 1.6; }
+    .wedding { padding: 32px 16px; }
+    .wedding h2 { font-size: 24px; letter-spacing: 6px; }
+    .w-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .w-item { background: rgba(255,255,255,0.5); border-radius: 8px; padding: 10px 10px; }
+    .w-item .w-label { font-size: 10px; letter-spacing: 2px; margin-bottom: 3px; }
+    .w-item .w-value { font-size: 13px; letter-spacing: 1px; line-height: 1.6; }
+    .w-item .w-value small { font-size: 10px; }
+    .wedding-photos { grid-template-columns: 1fr; }
+    .inline-photos { flex-wrap: wrap; }
+    .inline-photo { flex: 1 1 calc(50% - 5px); min-width: 120px; }
+    .quote p { font-size: 15px; }
+    .quote::before { font-size: 80px; }
+    .interlude p { font-size: 13px; letter-spacing: 2px; }
+    .chapter.finale { padding-left: 20px; }
+    .footer { padding: 40px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 背景音乐 -->
+<audio id="bgm" loop preload="auto">
+  <source src="pic/Beaté-Jordan Critz.mp3" type="audio/mpeg">
+</audio>
+<button class="music-toggle" id="musicBtn" title="播放音乐">♪</button>
+
+
+
+<section class="hero">
+  <!-- 浮动粒子 -->
+  <div class="hero-particles">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <!-- 四角装饰 -->
+  <div class="hero-corners">
+    <div class="hero-corner tl"></div><div class="hero-corner tr"></div>
+    <div class="hero-corner bl"></div><div class="hero-corner br"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-ornament">
+      <span class="ring">💍</span>❦<span class="ring">💍</span>
+    </div>
+    <h1>诚 挚 邀 请</h1>
+    <div class="names">朱明盛 <span class="amp">&amp;</span> 张芷萱</div>
+    <p class="sub">邀您见证我们的婚礼</p>
+    <div class="date-badge">
+      <span class="ring-icon">💍</span> 2026 · 07 · 05 <span class="ring-icon">💍</span>
+    </div>
+  </div>
+  <div class="scroll-hint">❦ 向下滑动，走进他们的故事 ❦</div>
+</section>
+
+<div class="story">
+
+  <!-- ==================== 人物介绍（圆形头像 + 横向排列） ==================== -->
+  <div class="cast">
+    <div class="cast-label">💍 C A S T 💍</div>
+    <div class="cast-title">❦ 人 物 介 绍 ❦</div>
+    <div class="cast-photo">
+      <img src="pic/置顶合影.jpg" alt="朱明盛 &amp; 张芷萱">
+    </div>
+    <div class="cast-row">
+      <!-- 新郎 -->
+      <div class="cast-card">
+        <div class="cast-avatar">
+          <!-- 替换 src="头像.jpg" -->
+          <img src="pic/人物介绍/新郎.png" alt="新郎">
+        </div>
+        <div class="cast-info">
+          <div class="role">新郎</div>
+          <div class="name">朱明盛</div>
+          <div class="info">1996.02.28 · 天津<br>双鱼座 · INTP</div>
+        </div>
+      </div>
+      <!-- 新娘 -->
+      <div class="cast-card">
+        <div class="cast-avatar">
+          <!-- 替换 src="头像.jpg" -->
+          <img src="pic/人物介绍/新娘.png" alt="新娘">
+        </div>
+        <div class="cast-info">
+          <div class="role">新娘</div>
+          <div class="name">张芷萱</div>
+          <div class="info">1997.04.05 · 辽宁本溪<br>白羊座 · ESFJ</div>
+        </div>
+      </div>
+    </div>
+    <div class="cast-footer">他们是彼此的命中注定</div>
+  </div>
+
+  <div class="divider">❦</div>
+
+  <!-- ==================== 序章：相遇（轮播） ==================== -->
+  <div class="chapter">
+    <div class="carousel-wrap">
+            <div class="carousel" id="c0">
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/序章/01-六月初的南开园，暑气未至，阳光正好 .jpg" alt="六月初的南开园，暑气未至，阳光正好">
+            </div>
+            <div class="carousel-caption">六月初的南开园，暑气未至，阳光正好</div>
+          </div>
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/序章/02-操场的晚霞.jpg" alt="操场的晚霞">
+            </div>
+            <div class="carousel-caption">操场的晚霞</div>
+          </div>
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/序章/03-故事的开始.jpg" alt="故事的开始">
+            </div>
+            <div class="carousel-caption">故事的开始</div>
+          </div>
+        </div>
+        <div class="carousel-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="carousel-arrows"><button class="carousel-arrow prev">◂</button><button class="carousel-arrow next">▸</button></div>
+      </div>
+    </div>
+    <div class="ch-text">
+      <div class="ch-num">序</div>
+      <div class="ch-date">2020.06.02</div>
+      <div class="ch-title">师妹，我是隔壁实验室的朱明盛</div>
+      <p>如果多年以后有人问起，新郎一定会说，那是他人生里最重要的一句开场白。</p>
+      <p>2020年六月初的天津，暑气未至，阳光柔软。南开大学分子所305实验室里，一个土生土长的天津小伙，遇见了那个刚从辽宁本溪来的女孩。女孩站在实验室的仪器之间，阳光折射出细碎的光斑落在她肩上。新郎走过去，说了一句看似平淡如水的话：<em>"师妹，我是隔壁实验室的朱明盛。"</em></p>
+      <p>那时候谁也不知道，这几个字，会改变两个人的一生。</p>
+    </div>
+  </div>
+
+  <!-- ==================== 壹：相爱（轮播） ==================== -->
+  <div class="chapter">
+    <div class="carousel-wrap">
+            <div class="carousel" id="c1">
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/第一章/01-第一张合照.jpg" alt="第一张合照">
+            </div>
+            <div class="carousel-caption">第一张合照</div>
+          </div>
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/第一章/02-口罩下的合照.jpg" alt="口罩下的合照">
+            </div>
+            <div class="carousel-caption">口罩下的合照</div>
+          </div>
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/第一章/03-😅.jpg" alt="😅">
+            </div>
+            <div class="carousel-caption">😅</div>
+          </div>
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/第一章/04-第一次短途旅行.jpg" alt="第一次短途旅行">
+            </div>
+            <div class="carousel-caption">第一次短途旅行</div>
+          </div>
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/第一章/05-新娘说她是可爱兔兔.jpg" alt="新娘说她是可爱兔兔">
+            </div>
+            <div class="carousel-caption">新娘说她是可爱兔兔</div>
+          </div>
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/第一章/06-😆.jpg" alt="😆">
+            </div>
+            <div class="carousel-caption">😆</div>
+          </div>
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/第一章/07-雪山啊雪山.jpg" alt="雪山啊雪山">
+            </div>
+            <div class="carousel-caption">雪山啊雪山</div>
+          </div>
+        </div>
+        <div class="carousel-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="carousel-arrows"><button class="carousel-arrow prev">◂</button><button class="carousel-arrow next">▸</button></div>
+      </div>
+    </div>
+    <div class="ch-text">
+      <div class="ch-num">壹</div>
+      <div class="ch-date">2020.07.05</div>
+      <div class="ch-title">口罩遮住了表情，遮不住眼睛里的光</div>
+      <p>那是疫情笼罩的夏天。口罩成了所有人的日常，却也成了他们之间第一个默契——遮住了半张脸，反而让彼此更认真地去看对方的眼睛。</p>
+      <p>相识不过三十三天，两颗心已经在实验室的朝夕相处中悄然靠近。七月五日，他们按下了人生中第一张合照的快门。照片里的新郎笑得爽朗，新娘眉眼弯弯。从这一天起，南开园的每一条路，都多了一对并肩的背影。</p>
+      <p>那一年，新郎二十四岁，新娘二十三岁。在不确定的年份里，他们确定了一件事——<em>就是这个人了。</em></p>
+    </div>
+  </div>
+
+  <!-- ==================== 贰：缘分暗号（无图） ==================== -->
+  <div class="chapter no-img">
+    <div class="ch-text">
+      <div class="ch-num">贰</div>
+      <div class="ch-date">命运的伏笔</div>
+      <div class="ch-title">有些巧合，科学解释不了</div>
+      <p>在一起之后，他们像所有热恋中的人一样翻看彼此的过往。然后他们发现了一件让两个理科生都愣住的事——</p>
+      <p>新郎过阳历生日，2月28日。新娘过阴历生日，也是二月二十八日。同一组数字，跨越了两套历法，像一个穿越了时空的暗号。而翻出当年的学生证，他们的学号末尾，竟都是同样的四个数字：1109。</p>
+      <p>一个在天津，一个在本溪，相隔八百公里。是基因？是概率？是巧合？两个学过统计学的人相视一笑——有些答案，不必计算。有些事，<em>在相遇之前就已经写好了。</em></p>
+    </div>
+  </div>
+
+  <!-- ==================== 叁：最平凡的日子（吃饭主题，文本间穿插照片） ==================== -->
+  <div class="chapter">
+    <div class="carousel-wrap">
+            <div class="carousel" id="c3">
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/第三章/01-西南村的烧烤.jpg" alt="西南村的烧烤">
+            </div>
+            <div class="carousel-caption">西南村的烧烤</div>
+          </div>
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/第三章/02-川川川川位居.jpg" alt="川川川川位居">
+            </div>
+            <div class="carousel-caption">川川川川位居</div>
+          </div>
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/第三章/03-食堂绝版的纸包鱼.jpg" alt="食堂绝版的纸包鱼">
+            </div>
+            <div class="carousel-caption">食堂绝版的纸包鱼</div>
+          </div>
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/第三章/04-封校限定版ZMS自制生日蛋糕.jpg" alt="封校限定版ZMS自制生日蛋糕">
+            </div>
+            <div class="carousel-caption">封校限定版ZMS自制生日蛋糕</div>
+          </div>
+        </div>
+        <div class="carousel-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="carousel-arrows"><button class="carousel-arrow prev">◂</button><button class="carousel-arrow next">▸</button></div>
+      </div>
+    </div>
+    <div class="ch-text">
+      <div class="ch-num">叁</div>
+      <div class="ch-date">2020.08 — 2022.04</div>
+      <div class="ch-title">最平凡的日子，后来最怀念</div>
+      <p>恋爱最初的两年，世界被疫情切割成碎片，但他们的小世界却完整而滚烫。那两年里，他们是实验室里最早到、最晚走的那一对。一起养细胞、跑胶、采集荧光图像——科研的枯燥在两个人面前变得不值一提。实验失败了，新娘递过一杯冰可乐；论文被拒了，新郎说"走，去吃顿好的"。</p>
+      <p>对，<em>吃饭</em>——这大概是那两年里最重要的事。</p>
+      <p>后来的日子里，他们一起吃过的饭越来越多。二食堂二楼的重庆小面、西南村居民楼的川菜馆、封校期间只能点到的外卖炸鸡、冬天做完实验深夜溜出去吃的铜锅涮肉。</p>
+      <p>封校的日子里，他们不能出校园，能吃到的选择少得可怜。但反而是在那些受限的日子里，两个人研究出了各种花式吃法：用休息室的小电锅偷煮小火锅、用网购的蛋糕模具自己制作生日蛋糕。后来封控结束、城市解封，他们可以去任何想去的地方吃饭了，却总还是觉得——<em>那时候在南开校园里一起吃的每一顿，都是这辈子最香的味道。</em></p>
+      <p>有人问他们那两年是怎么过来的。新娘想了想说：<em>"就……一起吃了很多很多顿饭。"</em> 新郎在旁边补了一句：<em>"以及，每一顿饭都是和她一起。"</em></p>
+      <p><em>爱一个人，就是和他一起吃很多很多顿饭。三餐四季，百吃不厌。</em></p>
+    </div>
+  </div>
+
+  <!-- ====== 间奏 ====== -->
+  <div class="interlude">
+    <span class="interlude-line"></span><span class="interlude-dot">❦</span><span class="interlude-line"></span>
+    <p>爱不是轰轰烈烈的宣言，而是日复一日的陪伴<br>和一顿又一顿的晚饭</p>
+  </div>
+
+  <!-- ==================== 肆：各自成长（轮播） ==================== -->
+  <div class="chapter">
+    <div class="carousel-wrap">
+            <div class="carousel" id="c4">
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/第四章/01-ZZX毕业啦.jpg" alt="ZZX毕业啦">
+            </div>
+            <div class="carousel-caption">ZZX毕业啦</div>
+          </div>
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/第四章/02-终于毕业啦.JPG" alt="终于毕业啦">
+            </div>
+            <div class="carousel-caption">终于毕业啦</div>
+          </div>
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/第四章/03-唯美背影😅.JPG" alt="唯美背影😅">
+            </div>
+            <div class="carousel-caption">唯美背影😅</div>
+          </div>
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/第四章/04-我也毕业啦.jpeg" alt="我也毕业啦">
+            </div>
+            <div class="carousel-caption">我也毕业啦</div>
+          </div>
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/第四章/05-红色蓝色学位服.JPG" alt="红色蓝色学位服">
+            </div>
+            <div class="carousel-caption">红色蓝色学位服</div>
+          </div>
+        </div>
+        <div class="carousel-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="carousel-arrows"><button class="carousel-arrow prev">◂</button><button class="carousel-arrow next">▸</button></div>
+      </div>
+    </div>
+    <div class="ch-text">
+      <div class="ch-num">肆</div>
+      <div class="ch-date">2022.05 — 2024.06</div>
+      <div class="ch-title">最好的爱情，是一起变成更好的人</div>
+      <p>2022年5月25日，新娘穿上了硕士服。马蹄湖边，她手捧鲜花，身旁站着一路陪她熬夜写论文、替她带早饭的那个人。快门按下的时候，新郎看着镜头里的女孩，心里只有一个念头：她值得世间所有的好。</p>
+      <p>两年后的2024年6月15日，轮到新郎了。从一个在实验室里横冲直撞的研一新生，到戴上博士帽——六年里每一个通宵的夜晚、每一组跑崩了又重来的数据、每一次想要放弃又被另一个人拽回来的瞬间，新娘都在。</p>
+      <p><em>他们不是彼此的附属，而是彼此的光。你照亮我一段路，我也照亮你一段路，走着走着，就走进了同一片未来。</em></p>
+    </div>
+  </div>
+
+  <!-- ====== 间奏 ====== -->
+  <div class="interlude">
+    <span class="interlude-line"></span><span class="interlude-dot">❦</span><span class="interlude-line"></span>
+    <p>家不是一个地点，家是两个人，再加两只猫</p>
+  </div>
+
+  <!-- ==================== 伍：猫咪（小猫介绍卡） ==================== -->
+  <div class="chapter cat-chapter">
+    <div class="cat-cards">
+      <!-- 朱艾莉 -->
+      <div class="cat-card">
+        <div class="cat-avatar">
+          <!-- 替换 src="艾莉.jpg" -->
+          <img src="pic/第五章/艾莉头像.jpg" alt="朱艾莉">
+        </div>
+        <div class="cat-info">
+          <div class="cat-role">嫡长女</div>
+          <div class="cat-name">朱艾莉</div>
+          <div class="cat-desc">2023.07.28 来到家中<br>猫中"大小姐"<br>性格傲娇 · 爱晒太阳<br>独处时会可怜巴巴地看着监控</div>
+        </div>
+      </div>
+      <!-- 张大发 -->
+      <div class="cat-card">
+        <div class="cat-avatar">
+          <!-- 替换 src="大发.jpg" -->
+          <img src="pic/第五章/发发头像.jpg" alt="张大发">
+        </div>
+        <div class="cat-info">
+          <div class="cat-role">嫡长子</div>
+          <div class="cat-name">张大发</div>
+          <div class="cat-desc">2023.10.19 来到家中<br>艾莉的小弟兼跟屁虫<br>性格憨厚 · 爱干饭<br>偶尔会在家里跑酷-黑皮体育生</div>
+        </div>
+      </div>
+    </div>
+  <div class="carousel-wrap" style="width:100%;max-width:680px;margin:24px auto 0;">
+          <div class="carousel" id="c-cats">
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/第五章/01-小朋友们.jpeg" alt="小朋友们">
+            </div>
+            <div class="carousel-caption">小朋友们</div>
+          </div>
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/第五章/02-怎么肥事.jpeg" alt="怎么肥事">
+            </div>
+            <div class="carousel-caption">怎么肥事</div>
+          </div>
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/第五章/03-好朋友亲亲.jpeg" alt="好朋友亲亲">
+            </div>
+            <div class="carousel-caption">好朋友亲亲</div>
+          </div>
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/第五章/04-怎么肥事2.jpeg" alt="怎么肥事2">
+            </div>
+            <div class="carousel-caption">怎么肥事2</div>
+          </div>
+        </div>
+        <div class="carousel-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="carousel-arrows"><button class="carousel-arrow prev">◂</button><button class="carousel-arrow next">▸</button></div>
+      </div>
+  </div>
+    <div class="ch-text" style="text-align:center;">
+      <div class="ch-num">伍</div>
+      <div class="ch-date">2023.07 — 2023.08</div>
+      <div class="ch-title">两只猫，两个人，一生一世</div>
+      <p style="text-align:center;">2023年7月28日，第一只小猫闯进了他们的生活。他们给她取名"朱艾莉"——姓氏随了爸爸，名字随了妈妈的气质，妥妥的嫡长女待遇。可是每次从监控摄像头里看到艾莉独自趴在空荡荡的房间里，两个人心都揪了。</p>
+      <p style="text-align:center;">于是不到三个月，"张大发"来了——名字一听就是来给姐姐当小弟的。从此，出租屋里热闹了起来：两只猫追逐打闹，两个人手忙脚乱。</p>
+      <p style="text-align:center;">也是在那一年，他们忽然懂了——<em>家的形状，不是房子有多大，而是推开门，有人在等，猫在叫，灯光是暖的。</em></p>
+    </div>
+  </div>
+
+  <!-- ==================== 陆：合法了（轮播） ==================== -->
+  <div class="chapter">
+    <div class="carousel-wrap">
+            <div class="carousel" id="c6">
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/第六章/01-领个证庆祝一下.JPG" alt="领个证庆祝一下">
+            </div>
+            <div class="carousel-caption">领个证庆祝一下</div>
+          </div>
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/第六章/02-领证咯.jpeg" alt="领证咯">
+            </div>
+            <div class="carousel-caption">领证咯</div>
+          </div>
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/第六章/03-领证咯.JPG" alt="领证咯">
+            </div>
+            <div class="carousel-caption">领证咯</div>
+          </div>
+        </div>
+        <div class="carousel-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="carousel-arrows"><button class="carousel-arrow prev">◂</button><button class="carousel-arrow next">▸</button></div>
+      </div>
+    </div>
+    <div class="ch-text">
+      <div class="ch-num">陆</div>
+      <div class="ch-date">2024.07.05</div>
+      <div class="ch-title">用领证庆祝纪念日——这辈子最浪漫的数学题</div>
+      <p>2024年7月5日，在一起整整四周年。新郎博士毕业刚满二十天，两个人做了一件他们蓄谋已久的事——走进民政局，把彼此的名字郑重地写进了同一本红色的结婚证。</p>
+      <p>没有铺张的仪式，没有刻意的排场。他们选了一个对他们来说最特别的日子——不是随便挑的良辰吉日，而是<em>四年前他们决定在一起的那一天</em>。从今往后，7月5日既是相爱的纪念日，也是合法的结婚纪念日。</p>
+      <p>后来新郎跟朋友说起这件事，笑称："用领证庆祝纪念日，是这辈子做过最浪漫的数学题——<em>一个日子，两份意义，一辈子回忆。</em>"</p>
+    </div>
+  </div>
+
+  <!-- ====== 间奏 ====== -->
+  <div class="interlude">
+    <span class="interlude-line"></span><span class="interlude-dot">❦</span><span class="interlude-line"></span>
+    <p>领证不是终点，新郎心里一直欠新娘一场正式的告白</p>
+  </div>
+
+  <!-- ==================== 柒：求婚（轮播） ==================== -->
+  <div class="chapter">
+    <div class="carousel-wrap">
+            <div class="carousel" id="c7">
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/第七章/01-富士山下.jpeg" alt="富士山下">
+            </div>
+            <div class="carousel-caption">富士山下</div>
+          </div>
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/第七章/02-富士山下.JPG" alt="富士山下">
+            </div>
+            <div class="carousel-caption">富士山下</div>
+          </div>
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/第七章/03-富士山下.jpeg" alt="富士山下">
+            </div>
+            <div class="carousel-caption">富士山下</div>
+          </div>
+        </div>
+        <div class="carousel-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="carousel-arrows"><button class="carousel-arrow prev">◂</button><button class="carousel-arrow next">▸</button></div>
+      </div>
+    </div>
+    <div class="ch-text">
+      <div class="ch-num">柒</div>
+      <div class="ch-date">2025.05.21</div>
+      <div class="ch-title">迟到的求婚，富士山为证</div>
+      <p>领证，是两个人面对未来的默契与笃定——在那一天，他们用最务实的方式告诉彼此：我愿意和你共度余生。但新郎心里始终觉得，新娘配得上一场郑重而浪漫的求婚。他不愿让法律程序替代了那个单膝跪地的仪式感，更不愿让新娘在往后回忆时，缺了一个"他说嫁给我吧"的瞬间。</p>
+      <p>于是，2025年5月21日，日本，富士山脚下。雪山在前，夕阳倾泻，新郎从口袋里掏出那枚藏了很久的戒指，单膝跪下。</p>
+      <p><em>新娘说了"好"。尽管他们早已是法律上的夫妻，但那一刻，她眼里的泪光和五年前第一张合照里的笑一模一样。富士山的雪顶在落日里泛着金色的光，像是群山也在鼓掌。</em></p>
+    </div>
+  </div>
+
+  <!-- ==================== 终章 ==================== -->
+  <div class="chapter finale">
+    <div class="ch-text">
+      <div class="ch-num">终</div>
+      <div class="ch-date">2026.07.05</div>
+      <div class="ch-title">六年，2192天。<br>他们说——不如结个婚吧。</div>
+      <p>从南开园分子所305的一句"你好"，到富士山脚下的单膝跪地；<br>
+      从两份写着同一个学号尾数的学生证，到两本印着同一个日期的结婚证。<br>
+      六年不长——还不够他们把想说的话说完；<br>
+      六年不短——足够让一个天津男孩和一个本溪女孩，<br>
+      把彼此的姓氏，写进自己往后余生的每一个日暮晨昏。</p>
+      <p style="font-size:16px;"><strong>二〇二六年七月五日，他们的六周年纪念日。<br>他们决定——结个婚，请大家一起庆祝。</strong></p>
+    </div>
+  </div>
+
+  <div class="divider">❦</div>
+
+  <!-- ==================== 金句 ==================== -->
+  <div class="quote">
+    <p>
+      缘分从来不是惊天动地的剧本<br>
+      它是实验室里一句平淡的开场白<br>
+      是两套历法里同一个数字的温柔暗号<br>
+      是一起吃了九百顿饭还没有腻的漫长陪伴<br>
+      是两只猫、两个人、一本红色结婚证<br>
+      是富士山下迟到了一年却恰逢其时的单膝跪地<br>
+      ——<em>是六年前种下的一颗种子，今天终于开了花。</em>
+    </p>
+  </div>
+
+  <div class="divider">❦</div>
+
+  <!-- ==================== 婚纱照 ==================== -->
+  <p style="text-align:center;font-size:13px;letter-spacing:5px;color:#c9a84c;margin-bottom:24px;">—— 六 年 ， 从 实 验 室 到 婚 纱 ——</p>
+  <div class="carousel-wrap" style="width:100%;max-width:680px;margin:0 auto 50px;">
+          <div class="carousel" id="c-wedding">
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/终章/01-婚纱照.JPG" alt="婚纱照">
+            </div>
+            <div class="carousel-caption">婚纱照</div>
+          </div>
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/终章/02-婚纱照.JPG" alt="婚纱照">
+            </div>
+            <div class="carousel-caption">婚纱照</div>
+          </div>
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/终章/03-婚纱照.JPG" alt="婚纱照">
+            </div>
+            <div class="carousel-caption">婚纱照</div>
+          </div>
+          <div class="carousel-slide">
+            <div class="slide-img">
+              <img src="pic/终章/04-婚纱照.JPG" alt="婚纱照">
+            </div>
+            <div class="carousel-caption">婚纱照</div>
+          </div>
+        </div>
+        <div class="carousel-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="carousel-arrows"><button class="carousel-arrow prev">◂</button><button class="carousel-arrow next">▸</button></div>
+      </div>
+  </div>
+
+  <div class="divider">❦</div>
+
+  <!-- ==================== 婚礼详情 ==================== -->
+  <div class="wedding">
+    <h2>❦ 婚 礼 邀 约 ❦</h2>
+    <div class="w-sub">YOU ARE WARMLY INVITED</div>
+    <div class="w-grid">
+      <div class="w-item"><div class="w-label">🤵 新郎</div><div class="w-value">朱明盛<small>1996.02.28 · 天津</small></div></div>
+      <div class="w-item"><div class="w-label">👰 新娘</div><div class="w-value">张芷萱<small>1997.04.05 · 辽宁本溪</small></div></div>
+      <div class="w-item"><div class="w-label">📅 日期</div><div class="w-value">2026年7月5日<small>星期日 · 农历五月廿一</small></div></div>
+      <div class="w-item"><div class="w-label">📍 地点</div><div class="w-value">天谊英伦古堡庄园<small>婚礼宴会厅</small></div></div>
+      <div class="w-item"><div class="w-label">🕐 迎宾签到</div><div class="w-value">15:20<small>游园会 —— 早点来玩！</small></div></div>
+      <div class="w-item"><div class="w-label">💒 婚礼仪式</div><div class="w-value">17:28<small>良辰吉时，见证誓言</small></div></div>
+      <div class="w-item"><div class="w-label">🥂 婚礼晚宴</div><div class="w-value">18:30<small>美酒佳肴，不醉不归</small></div></div>
+      <div class="w-item"><div class="w-label">🎪 游园会</div><div class="w-value">游戏 · 甜品 · 拍照<small>早点来，边玩边等！</small></div></div>
+    </div>
+
+    <!-- 婚礼配图：地图 + 游园会 -->
+    <div class="wedding-photos">
+      <div>
+        <div class="map-container">
+          <div id="weddingMap"></div>
+        </div>
+        <div class="map-caption">📍 天津市河西区马场道188号<br>天谊英伦古堡庄园宴会厅<br><small style="color:#c9a84c;">可拖动缩放查看周边</small></div>
+      </div>
+      <div>
+        <div class="wedding-photo">
+          <img src="pic/游园会.jpg" alt="游园会迎宾区">
+        </div>
+        <div class="wedding-photo-caption">游园会迎宾区<br>15:20 开始 · 甜品台 · 互动游戏 · 合影墙</div>
+      </div>
+    </div>
+
+    <div class="w-invite">
+      六年，2192天。<br>
+      从南开园分子所305的一句"你好"，到天谊英伦古堡的红毯。<br>
+      新郎与新娘，诚挚邀请您——<br>
+      <strong style="font-size:17px;letter-spacing:4px;">来见证，来欢笑，来与他们一起庆祝。</strong>
+    </div>
+  </div>
+
+  <!-- ==================== 尾 ==================== -->
+  <div class="footer">
+    <div class="f-names">❦ 朱明盛 &amp; 张芷萱 ❦</div>
+    <div>敬邀 · 二零二六年七月五日</div>
+    <div class="f-route">爱是一段旅途，而你们的见证，是沿途最温暖的风景。</div>
+  </div>
+
+</div>
+
+<!-- ==================== 高德地图 JS API ==================== -->
+<script>
+  window._AMapSecurityConfig = {
+    securityJsCode: '251c50005afcd5c76541f3f6ecafdd8d'
+  };
+</script>
+<script src="https://webapi.amap.com/maps?v=2.0&key=c0395a3907c5937a6762e17f6dc8b99d"></script>
+
+<!-- ==================== 轮播 JS ==================== -->
+<script>
+(function() {
+  // 章节滚动淡入
+  var chapters = document.querySelectorAll('.chapter');
+  if (chapters.length) {
+    var chObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
+    chapters.forEach(function(el) { chObserver.observe(el); });
+  }
+
+  // 轮播逻辑
+  document.querySelectorAll('.carousel').forEach(function(carousel) {
+    var track = carousel.querySelector('.carousel-track');
+    var slides = carousel.querySelectorAll('.carousel-slide');
+    var dots = carousel.querySelectorAll('.dot');
+    var prevBtn = carousel.querySelector('.carousel-arrow.prev');
+    var nextBtn = carousel.querySelector('.carousel-arrow.next');
+    var total = slides.length;
+    if (total < 2) return;
+
+    function goTo(idx) {
+      track.scrollTo({ left: slides[idx].offsetLeft - track.offsetLeft, behavior: 'smooth' });
+    }
+    function getCurrent() {
+      var scrollLeft = track.scrollLeft;
+      var trackLeft = track.offsetLeft || 0;
+      var best = 0;
+      slides.forEach(function(s, i) {
+        if (Math.abs((s.offsetLeft - trackLeft) - scrollLeft) < Math.abs((slides[best].offsetLeft - trackLeft) - scrollLeft)) {
+          best = i;
+        }
+      });
+      return best;
+    }
+    function updateDots(idx) {
+      dots.forEach(function(d, i) { d.classList.toggle('active', i === idx); });
+    }
+
+    // 滚动事件更新圆点
+    track.addEventListener('scroll', function() { updateDots(getCurrent()); }, { passive: true });
+
+    // 箭头按钮
+    prevBtn.addEventListener('click', function() {
+      var cur = getCurrent();
+      goTo(cur === 0 ? total - 1 : cur - 1);
+    });
+    nextBtn.addEventListener('click', function() {
+      var cur = getCurrent();
+      goTo(cur === total - 1 ? 0 : cur + 1);
+    });
+
+    // 触摸/滚动后自动校准（可选）
+  });
+
+  // 婚礼地图（高德地图）
+  (function initMap() {
+    var mapEl = document.getElementById('weddingMap');
+    if (!mapEl || typeof AMap === 'undefined') return;
+    // 天津市河西区马场道188号 天谊英伦古堡庄园
+    var lng = 117.2005, lat = 39.1090;
+    var map = new AMap.Map(mapEl, {
+      center: [lng, lat],
+      zoom: 16,
+      scrollWheel: false,
+      mapStyle: 'amap://styles/light'
+    });
+    var marker = new AMap.Marker({
+      position: [lng, lat],
+      title: '天谊英伦古堡庄园宴会厅'
+    });
+    map.add(marker);
+    var infoWin = new AMap.InfoWindow({
+      content: '<div style="font-size:14px;line-height:1.8;padding:4px 8px;"><b>天谊英伦古堡庄园</b><br>天津市河西区马场道188号<br>婚礼宴会厅</div>',
+      offset: new AMap.Pixel(0, -36)
+    });
+    infoWin.open(map, [lng, lat]);
+    // 点击后允许滚轮缩放
+    map.on('click', function() { map.setStatus({ scrollWheel: true }); });
+  })();
+
+  // 背景音乐
+  var bgm = document.getElementById('bgm');
+  var musicBtn = document.getElementById('musicBtn');
+  var musicPlaying = false;
+  musicBtn.addEventListener('click', function() {
+    if (musicPlaying) {
+      bgm.pause();
+      musicBtn.classList.remove('playing');
+      musicBtn.textContent = '♪';
+      musicBtn.title = '播放音乐';
+    } else {
+      bgm.play().then(function() {
+        musicBtn.classList.add('playing');
+        musicBtn.textContent = '♫';
+        musicBtn.title = '暂停音乐';
+      }).catch(function() {});
+    }
+    musicPlaying = !musicPlaying;
+  });
+  // 首次用户交互后自动播放
+  var autoPlayed = false;
+  document.addEventListener('click', function tryAutoPlay() {
+    if (autoPlayed) return;
+    bgm.play().then(function() {
+      autoPlayed = true;
+      musicPlaying = true;
+      musicBtn.classList.add('playing');
+      musicBtn.textContent = '♫';
+      musicBtn.title = '暂停音乐';
+    }).catch(function() {});
+  }, { once: false });
+
+  // 图片加载失败时自动替换为占位符（适配离线/无图片环境，跳过地图内部图片）
+  function isInsideMap(el) {
+    while (el) { if (el.id === 'weddingMap') return true; el = el.parentElement; }
+    return false;
+  }
+  function replaceBrokenImg(img) {
+    if (isInsideMap(img)) return;
+    var alt = img.alt || '图片';
+    var ph = document.createElement('div');
+    ph.className = 'img-fallback';
+    ph.innerHTML = '<span class="fallback-icon">🖼️</span><span>' + alt + '</span>';
+    img.parentNode.replaceChild(ph, img);
+  }
+  document.addEventListener('error', function(e) {
+    if (e.target.tagName === 'IMG') { replaceBrokenImg(e.target); }
+  }, true);
+  // 兜底：检查已加载失败的图片
+  window.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('img').forEach(function(img) {
+      if (img.naturalWidth === 0 && img.complete) { replaceBrokenImg(img); }
+    });
+  });
+
+})();
+</script>
+
+</body>
+</html>
