@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>朱明盛 &amp; 张芷萱 | 婚礼邀请函</title>
+<!-- wedding-build:meta:start -->
 <!-- 微信 / 社交平台分享卡片 -->
 <meta property="og:title" content="朱明盛 &amp; 张芷萱 | 婚礼邀请函">
 <meta property="og:description" content="二零二六年七月五日 · 诚挚邀请您见证我们的婚礼">
@@ -20,8 +21,9 @@
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16-v2.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32-v2.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-v2.png">
+<!-- wedding-build:meta:end -->
 <style>
-  /* Google Fonts blocked in China, using system fonts */
+  /* Google Fonts may be blocked in China; use the existing system-font fallback. */
   /* 离线或无网络时自动使用系统衬线字体，排版不受影响 */
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -324,7 +326,7 @@
 <body>
 
 <!-- 背景音乐 -->
-<audio id="bgm" loop preload="auto" autoplay>
+<audio id="bgm" loop preload="auto">
   <source src="pic/Beaté-Jordan Critz.mp3" type="audio/mpeg">
 </audio>
 <button class="music-toggle" id="musicBtn" title="播放音乐">♪</button>
@@ -891,6 +893,8 @@
     securityJsCode: '251c50005afcd5c76541f3f6ecafdd8d'
   };
 </script>
+
+
 <!-- ==================== 轮播 JS ==================== -->
 <script>
 (function() {
@@ -956,7 +960,7 @@
     if (!mapEl || mapInitialized || typeof AMap === 'undefined') return;
     mapInitialized = true;
     // 天津市河西区马场道188号 天谊英伦古堡庄园
-    var lng = 117.190855, lat = 39.092805;
+    var lng = 117.2005, lat = 39.1090;
     var map = new AMap.Map(mapEl, {
       center: [lng, lat],
       zoom: 16,
@@ -1010,71 +1014,37 @@
     }
   }
 
-  // 背景音乐（默认开启，按钮可关闭）
+  // 背景音乐
   var bgm = document.getElementById('bgm');
   var musicBtn = document.getElementById('musicBtn');
-
-  function setPlaying() {
-    musicBtn.classList.add('playing');
-    musicBtn.textContent = '♫';
-    musicBtn.title = '暂停音乐';
-  }
-  function setPaused() {
-    musicBtn.classList.remove('playing');
-    musicBtn.textContent = '♪';
-    musicBtn.title = '播放音乐';
-  }
-
-  var started = false;
-
-  function tryPlay() {
-    var p = bgm.play();
-    if (p !== undefined) {
-      p.then(function() {
-        setPlaying();
-        started = true;
-      }).catch(function(e) {
-        // 浏览器拦截或音频未就绪，保持 ♪ 状态
-        setPaused();
-      });
-    }
-  }
-
-  // —— 自动播放：页面加载后立即尝试 ——
-  tryPlay();
-
-  // —— 微信内置浏览器专属：JS Bridge 就绪后播放 ——
-  document.addEventListener('WeixinJSBridgeReady', function() {
-    tryPlay();
-  }, false);
-
-  // —— 用户交互兜底：点击/触摸任意位置即播放 ——
-  function onInteraction() {
-    if (!started) tryPlay();
-    if (started) {
-      document.removeEventListener('click', onInteraction);
-      document.removeEventListener('touchstart', onInteraction);
-    }
-  }
-  document.addEventListener('click', onInteraction);
-  document.addEventListener('touchstart', onInteraction, {passive: true});
-
-  // —— 音乐按钮：切换播放/暂停 ——
-  musicBtn.addEventListener('click', function(e) {
-    e.stopPropagation();
-    // 确保 onInteraction 也收到事件（如果还没播过）
-    if (!started) {
-      tryPlay();
-      return;
-    }
-    // 已播过：切换
-    if (bgm.paused) {
-      tryPlay();
-    } else {
+  var musicPlaying = false;
+  musicBtn.addEventListener('click', function() {
+    if (musicPlaying) {
       bgm.pause();
-      setPaused();
+      musicBtn.classList.remove('playing');
+      musicBtn.textContent = '♪';
+      musicBtn.title = '播放音乐';
+    } else {
+      bgm.play().then(function() {
+        musicBtn.classList.add('playing');
+        musicBtn.textContent = '♫';
+        musicBtn.title = '暂停音乐';
+      }).catch(function() {});
     }
+    musicPlaying = !musicPlaying;
   });
+  // 首次用户交互后自动播放
+  var autoPlayed = false;
+  document.addEventListener('click', function tryAutoPlay() {
+    if (autoPlayed) return;
+    bgm.play().then(function() {
+      autoPlayed = true;
+      musicPlaying = true;
+      musicBtn.classList.add('playing');
+      musicBtn.textContent = '♫';
+      musicBtn.title = '暂停音乐';
+    }).catch(function() {});
+  }, { once: false });
 
   // 图片加载失败时自动替换为占位符（适配离线/无图片环境，跳过地图内部图片）
   function isInsideMap(el) {
