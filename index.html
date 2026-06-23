@@ -326,7 +326,7 @@
 <body>
 
 <!-- 背景音乐 -->
-<audio id="bgm" loop preload="auto">
+<audio id="bgm" loop preload="auto" autoplay>
   <source src="pic/Beaté-Jordan Critz.mp3" type="audio/mpeg">
 </audio>
 <button class="music-toggle" id="musicBtn" title="播放音乐">♪</button>
@@ -1018,33 +1018,56 @@
   var bgm = document.getElementById('bgm');
   var musicBtn = document.getElementById('musicBtn');
   var musicPlaying = false;
-  musicBtn.addEventListener('click', function() {
-    if (musicPlaying) {
-      bgm.pause();
-      musicBtn.classList.remove('playing');
-      musicBtn.textContent = '♪';
-      musicBtn.title = '播放音乐';
-    } else {
-      bgm.play().then(function() {
-        musicBtn.classList.add('playing');
-        musicBtn.textContent = '♫';
-        musicBtn.title = '暂停音乐';
-      }).catch(function() {});
+  var musicStartRequested = false;
+
+  function setMusicButtonState(playing) {
+    musicBtn.classList.toggle('playing', playing);
+    musicBtn.textContent = playing ? '♫' : '♪';
+    musicBtn.title = playing ? '暂停音乐' : '播放音乐';
+  }
+
+  function startBackgroundMusic() {
+    if (musicPlaying || musicStartRequested) return;
+    musicStartRequested = true;
+    var playback = bgm.play();
+    if (playback === undefined) {
+      musicStartRequested = false;
+      musicPlaying = bgm.paused === false;
+      setMusicButtonState(musicPlaying);
+      return;
     }
-    musicPlaying = !musicPlaying;
-  });
-  // 首次用户交互后自动播放
-  var autoPlayed = false;
-  document.addEventListener('click', function tryAutoPlay() {
-    if (autoPlayed) return;
-    bgm.play().then(function() {
-      autoPlayed = true;
+    playback.then(function() {
+      musicStartRequested = false;
       musicPlaying = true;
-      musicBtn.classList.add('playing');
-      musicBtn.textContent = '♫';
-      musicBtn.title = '暂停音乐';
-    }).catch(function() {});
-  }, { once: false });
+      setMusicButtonState(true);
+    }).catch(function() {
+      musicStartRequested = false;
+      musicPlaying = false;
+      setMusicButtonState(false);
+    });
+  }
+
+  function stopBackgroundMusic() {
+    bgm.pause();
+    musicPlaying = false;
+    musicStartRequested = false;
+    setMusicButtonState(false);
+  }
+
+  musicBtn.addEventListener('click', function(event) {
+    event.stopPropagation();
+    if (musicPlaying) {
+      stopBackgroundMusic();
+    } else {
+      startBackgroundMusic();
+    }
+  });
+
+  // 页面打开时立即尝试；不支持有声自动播放的浏览器会在首次用户手势重试。
+  startBackgroundMusic();
+  document.addEventListener('WeixinJSBridgeReady', startBackgroundMusic, false);
+  document.addEventListener('pointerdown', startBackgroundMusic, { once: true, passive: true });
+  document.addEventListener('touchstart', startBackgroundMusic, { once: true, passive: true });
 
   // 图片加载失败时自动替换为占位符（适配离线/无图片环境，跳过地图内部图片）
   function isInsideMap(el) {
